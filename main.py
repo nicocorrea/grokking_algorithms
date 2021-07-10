@@ -42,11 +42,11 @@ def find_smallest(arr):
 
 
 def selection_sort(arr):
-    newArr = []
-    for i in range(len(arr)):
+    new_arr = []
+    for _ in range(len(arr)):
         smallest = find_smallest(arr)
-        newArr.append(arr.pop(smallest))
-    return newArr
+        new_arr.append(arr.pop(smallest))
+    return new_arr
 
 
 print(selection_sort([5, 3, 6, 2, 10]))
