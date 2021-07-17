@@ -164,7 +164,7 @@ search_mango_seller('me', graph)
 
 
 ##
-## Dijkstra's algorithm
+# Dijkstra's algorithm
 ##
 
 graph["start"] = {}
