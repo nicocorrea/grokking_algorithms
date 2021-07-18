@@ -3,6 +3,7 @@
 ##
 
 from collections import deque
+from typing import Any
 
 
 def binary_search(lista, item):
@@ -167,33 +168,38 @@ search_mango_seller('me', graph)
 # Dijkstra's algorithm
 ##
 
-graph["start"] = {}
-graph["start"]["a"] = 6
-graph["start"]["b"] = 2
+graph["start"] = {
+    'a': 6,
+    'b': 2
+}
 
-graph["a"] = {}
-graph["a"]["fin"] = 1
+graph["a"] = {
+    'fin': 1
+}
 
-graph["b"] = {}
-graph["b"]["a"] = 3
-graph["b"]["fin"] = 5
+graph["b"] = {
+    'a': 3,
+    'fin': 5
+}
 
 graph["fin"] = {}
 
 infinity = float('inf')
-costs = {}
-costs["a"] = 6
-costs["b"] = 2
-costs["fin"] = infinity
+costs = {
+    'a': 6,
+    'b': 2,
+    'fin': infinity
+}
 
-parents = {}
-parents["a"] = "start"
-parents["b"] = "start"
-parents["fin"] = None
+parents = {
+    'a': 'start',
+    'b': 'start',
+    'fin': None
+}
 
 processed = []
 
-def find_lowest_cost_node(costs):
+def find_lowest_cost_node(costs) -> Any:
     lowest_cost = float('inf')
     lowest_cost_node = None
     for node in costs:
@@ -218,9 +224,32 @@ while node is not None:
 print(processed)
 
 
+##
+# Approximation algorithm - Greedy approach
+##
 
+states_needed = set(['met', 'wa', 'or', 'id', 'nv', 'ut', 'ca', 'az'])
+stations = {
+    'kone': set(['id', 'nv', 'ut']),
+    'ktwo': set(['wa', 'id', 'mt']),
+    'kthree': set(['or', 'nv', 'ca']),
+    'kfour': set(['nv', 'ut']),
+    'kfive': set(['ca', 'az'])
+}
 
+final_stations = set()
 
+n = len(states_needed)
+while n != 0:
+    best_station = None
+    states_covered = set()
+    for station, states in stations.items():
+        covered = states_needed & states
+        if len(covered) > len(states_covered):
+            best_station = station
+            states_covered = covered
+    states_needed -= states_covered
+    final_stations.add(best_station) if best_station != None else 0
+    n -= 1
 
-
-
+print(final_stations)
